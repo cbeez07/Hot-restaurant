@@ -54,14 +54,14 @@ app.get("/reserve", (req, res) => {
 
 app.post("/api/reservation", (req, res) => {
     let newReservation = req.body;
-    if (seated < 5) {
+    if (seated.length < 5) {
         seated.push(newReservation);
-        alert("You will now be seated!!");
+        // alert("You will now be seated!!");
         return res.json(seated);
 
     } else {
         waiting.push(newReservation);
-        alert("You are on the Wait List!!");
+        // alert("You are on the Wait List!!");
         return res.json(waiting);
 
     }
