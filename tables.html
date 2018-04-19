@@ -8,26 +8,50 @@
 
 </head>
 <body>
-    <h1>Hello!</h1>
+   <div class='target'></div>
+   <script
+   src="https://code.jquery.com/jquery-3.3.1.js"
+   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+   crossorigin="anonymous"></script>
     <script>
-    var tableList = [
-    {
-     tables:[
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
-        ]
-    }
-]
 
-module.exports = tableList;
+  function getSeatedList() {
+      $.get("/api/seated", function(data) {
+       console.log(data);
+       console.log(data[0].customerID);
+        for(var i = 0; i < data.length; i++) {
+            var customerID = data[i].customerID;
+            console.log(customerID);
+            var newReservationSection = "<div>";
+            newReservationSection += "<p>tableNumber" + i + 1 + "</p>";
+            newReservationSection += "<p>customerID" + customerID + "</p>";
+            newReservationSection += "</div>";
+            $(".target").append(newReservationSection);
+          
+        };
+    } 
+)};
+
+function getWaitingList() {
+      $.get("/api/waiting", function(data) {
+       console.log(data);
+       console.log(data[0].customerID);
+        for(var i = 0; i < data.length; i++) {
+            var customerID = data[i].customerID;
+            console.log(customerID);
+            var newReservationSection = "<div>";
+            newReservationSection += "<p>tableNumber" + i + 1 + "</p>";
+            newReservationSection += "<p>customerID" + customerID + "</p>";
+            newReservationSection += "</div>";
+            $(".target").append(newReservationSection);
+          
+        };
+    } 
+)};
+
+getSeatedList();
+getWaitingList();
+
     </script>
     
 </body>
