@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form role="form">
+
+                <div class="form-group">
+                  <label for="customerName">Name</label>
+                  <input type="text" class="form-control" id="name">
+                </div>
+  
+                <div class="form-group">
+                  <label for="customerPhone">Phone</label>
+                  <input type="text" class="form-control" id="phone">
+                </div>
+  
+                <div class="form-group">
+                  <label for="customerEmail">Email</label>
+                  <input type="text" class="form-control" id="email">
+                </div>
+  
+                <div class="form-group">
+                  <label for="customerID">Customer ID</label>
+                  <input type="text" class="form-control" id="id">
+                </div>
+                <button class="waves-effect waves-light btn orange lighten-2" id="submit"><i class="material-icons left">comment</i>Add Your Profile!</button>
+              </form>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+         <script>
+            $("#submit").on('click', function(event) {
+                event.preventDefault();
+            
+            var newReservation = {
+                customerName : $("#name").val().trim(),
+                customerPhoneNumber : $("#phone").val().trim(),
+                customerEmail : $("#email").val().trim(),
+                customerID : $("#id").val().trim()
+            }
+
+            console.log(newReservation)
+            
+             $.post('/api/reservation', newReservation)
+             .then(function(data){
+                 console.log(data);
+                 alert('adding reservation');
+             })
+            })
+           </script>  
+</body>
+</html>
